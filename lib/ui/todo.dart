@@ -26,24 +26,28 @@ class TodoScreenState extends State<TodoScreen> {
         itemCount: todos.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-            child: InkWell(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    todos[index].id.toString(),
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    todos[index].title,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    todos[index].completed ? "Completed" : "",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: InkWell(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      todos[index].id.toString(),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      todos[index].title,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      todos[index].completed ? "Completed" : "",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

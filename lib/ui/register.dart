@@ -66,9 +66,9 @@ class RegisterScreenState extends State<RegisterScreen> {
                   labelText: "User Id",
                 ),
                 validator: (value) {
-                  if (value.isEmpty) return "Userid is required";
-                  if (value.length < 6 || value.length > 12)
-                    return "Userid must be 6-12 charactersr";
+                  if (value.isEmpty) return "UserId is required";
+                  else if (value.length < 6 || value.length > 12)
+                    return "UserId must be 6-12 charactersr";
                 },
               ),
 ////////////////////////////////////////////////////////////////////////////////////////////

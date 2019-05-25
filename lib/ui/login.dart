@@ -84,12 +84,12 @@ class LoginScreenState extends State<LoginScreen> {
                     child: RaisedButton(
                       child: Text("sign in"),
                       onPressed: () {
-                        bool flag = false;
+                        bool cleck = false;
                         if (_formkey.currentState.validate()) {
                           for (int i = 0; i < currentUsers.length; i++) {
                             if (userid.text == currentUsers[i].userid &&
                                 password.text == currentUsers[i].password) {
-                              flag = true;
+                              cleck = true;
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
@@ -99,15 +99,15 @@ class LoginScreenState extends State<LoginScreen> {
                               );
                             }
                           }
-                          if (!flag) {
+                          if (!cleck) {
                             Toast.show("Invalid user or password", context,
-                                duration: Toast.LENGTH_SHORT,
+                                duration: Toast.LENGTH_LONG,
                                 gravity: Toast.BOTTOM);
                           }
                         }
                         else {
                           Toast.show("Please fill out this form", context,
-                                duration: Toast.LENGTH_SHORT,
+                                duration: Toast.LENGTH_LONG,
                                 gravity: Toast.BOTTOM);
                         }
                       },

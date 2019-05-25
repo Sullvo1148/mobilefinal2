@@ -19,11 +19,11 @@ class ProfileScreenState extends State<ProfileScreen> {
   TextEditingController password = TextEditingController();
   TextEditingController quote = TextEditingController();
   UserProvider userProvider = UserProvider();
-  bool isNumeric(String s) {
-    if (s == null) {
+  bool isNumeric(String check) {
+    if (check == null) {
       return false;
     }
-    return double.parse(s, (e) => null) != null;
+    return double.parse(check, (e) => null) != null;
   }
 
   @override
@@ -51,18 +51,19 @@ class ProfileScreenState extends State<ProfileScreen> {
                   controller: userid,
                   decoration: InputDecoration(labelText: "User Id"),
                   validator: (value) {
-                    if (value.length < 6 || value.length > 12)
-                      return "Userid must be 6-12 character";
-                  },
+                    if (value.isEmpty) return "UserId is required";
+                    else if (value.length < 6 || value.length > 12)
+                      return "UserId must be 6-12 charactersr";
+                },
                 ),
                 TextFormField(
                   controller: name,
                   decoration: InputDecoration(
                     labelText: "Name",
-                    hintText: "John Wick",
                   ),
                   validator: (value) {
                     int count = 0;
+                    if (value.isEmpty) return "Name is required";
                     for (int i = 0; i < value.length; i++) {
                       if (value[i] == " ") {
                         count = 1;
@@ -71,29 +72,31 @@ class ProfileScreenState extends State<ProfileScreen> {
                     if (count == 0) {
                       return "Please fill name correctly";
                     }
-                  },
+                },
+              ),
+              TextFormField(
+                controller: age,
+                decoration: InputDecoration(
+                  labelText: "Age",
                 ),
-                TextFormField(
-                  controller: age,
-                  decoration: InputDecoration(
-                    labelText: "Age",
-                  ),
-                  validator: (value) {
-                    if (!isNumeric(value)) return "Age incorrect";
-                    if (int.parse(value) < 10 || int.parse(value) > 80)
-                      return "Age must be between 10 and 80";
-                  },
+                validator: (value) {
+                  if (value.isEmpty) return "Age is required";
+                  if (!isNumeric(value)) return "Age incorrect";
+                  if (int.parse(value) < 10 || int.parse(value) > 80)
+                    return "Age must be between 10 and 80";
+                },
+              ),
+              TextFormField(
+                controller: password,
+                decoration: InputDecoration(
+                  labelText: "Password",
                 ),
-                TextFormField(
-                  controller: password,
-                  decoration: InputDecoration(
-                    labelText: "Password",
-                  ),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value.length < 6) return "Password must be more than 6";
-                  },
-                ),
+                obscureText: true,
+                validator: (value) {
+                  if (value.isEmpty) return "Password is required";
+                  else if (value.length < 6) return "Password must more than 6 characters";
+                },
+              ),
                 TextFormField(
                   controller: quote,
                   maxLines: 5,
